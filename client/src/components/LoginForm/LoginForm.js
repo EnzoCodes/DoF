@@ -79,7 +79,8 @@ class LoginForm extends Component {
           console.log(results);
           window.localStorage.setItem("id", results.data._id);
           window.localStorage.setItem("username", results.data.username);
-          // window.locaStorage.setItem("img", results.data.img);
+          window.localStorage.setItem("img", results.data.img);
+
           window.location.href="/lobby";
         }
       }).catch(function(err){
@@ -93,12 +94,12 @@ class LoginForm extends Component {
 
   logAttempt = event => {
     event.preventDefault();
-    // socket.emit('authentication', this.state);
     let user = this.state;
+
     if (this.state.username == "" || user.password == ""){
       alert("Please enter a username and password");
     } else {
-
+      socket.emit('authentication', this.state);
     }
   }
 

@@ -51,6 +51,25 @@ mongoose.connect("mongodb://localhost/dualOfFate", {
     });
   });
 
+  // app.post("/logAttempt", function(req, res){
+  //   User.findOne({username: req.body.username,
+  //                 password: req.body.password })
+  //               }).then(dbRes)=> {
+  //                 if (dbRes == null) {
+  //                   res.json(dbRes);
+  //                 } else {
+  //                   console.log("Logged in...")
+  //                 }
+  //               }
+  //                  function(err, user) {
+  //                    if (err || !user) {
+  //                      console.log("No match found...");
+  //                      return callback(new Error("User not found"));
+  //                    }
+  //                      return callback(null);
+  //                  });
+  //                });
+  //
 
 
 
@@ -58,30 +77,30 @@ mongoose.connect("mongodb://localhost/dualOfFate", {
 let userList = {};
 let gameList = {};
 
-  // require('socketio-auth')(io, {
-  //
-  //   authenticate: function(socket, data, callback){
-  //
-  //     let username = data.username;
-  //     let password = data.password;
-  //
-  //     User.findOne({username: data.username,
-  //                    password: data.password},
-  //                  function(err, user) {
-  //                    if (err || !user) {
-  //                      console.log("No match found...");
-  //                      return callback(new Error("User not found"));
-  //                    }
-  //                      return callback(null, user.password == password);
-  //                  });
-  //     },
-  //
-  //     timeout:500000000,
-  //
-  //     postAuthenticate(socket, data) {
-  //       console.log(data)
-  //     }
-  // });
+  require('socketio-auth')(io, {
+
+    authenticate: function(socket, data, callback){
+
+      let username = data.username;
+      let password = data.password;
+
+      User.findOne({username: data.username,
+                     password: data.password},
+                   function(err, user) {
+                     if (err || !user) {
+                       console.log("No match found...");
+                       return callback(new Error("User not found"));
+                     }
+                       return callback(null, user.password == password);
+                   });
+      },
+
+      timeout:500000000,
+
+      postAuthenticate(socket, data) {
+        console.log(data)
+      }
+  });
 
 io.on('connection', function(socket){
 

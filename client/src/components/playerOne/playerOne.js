@@ -32,11 +32,6 @@ import ult from '../../svg/diamond.svg';
 
 
 class playerOne extends Component {
- 
-
-  state = {
-    
-  }
 
   /* p1 HP */
   setHealth(amount) {

@@ -8,10 +8,6 @@ import ult from '../../svg/diamond.svg';
 
 class playerTwo extends Component {
 
-  state = {
-  
-  }
-
   /* p2 HP */
   setP2_health(amount) {
     this.setState({p2_damageTaken: amount});
